@@ -351,6 +351,7 @@ if (typeof module !== 'undefined') module.exports = TI;
   function back() { goTab(TAB === 'tetap' || TAB === 'who' ? 'siapa' : 'tetap'); }
   if (tg.BackButton) tg.BackButton.onClick(function () { if (!busy) back(); });
   function draw() {
+    if (TAB === 'who' && !picked[WHO]) TAB = 'siapa';   // LIPAS 1.67: her page closes when she is no longer picked (newest data says already reported)
     var h = TAB === 'siapa'
       ? '<div class="top"><b>Teach In Mini App</b><span>Versi ' + esc(L.v) + '</span>' + (FRESH ? '' : '<span class="upd">⏳ Dikemas kini</span>') + '<button class="gear" id="setb">⚙️</button></div>'
       : '<div class="top"><button class="backb" id="backb">‹</button><b>' + esc(TAB === 'who' ? (picked[WHO] || {}).t || '' : PAGES[TAB] + (TAB === 'wipe' ? ' ' + L.wipeYear : '')) + '</b></div>';
