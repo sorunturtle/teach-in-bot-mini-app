@@ -1,5 +1,5 @@
 // Teach In Bot Mini App (built by tests/build-mini.js; source teachin-mini/index.html)
-(function () { var st = document.createElement("style"); st.textContent = "\n:root{--bg:#1f2029;--card:#2a2c38;--card2:#323545;--text:#dfe1ea;--dim:#9a9db0;--acc:#b794f6;--accText:#1d1430;--red:#f47c8c;--redText:#2b1216;--off:#3a3d4d;--ok:#7bc48f}\n*{box-sizing:border-box}\nhtml,body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,\"Segoe UI\",Roboto,Arial,sans-serif}\nbody{padding:10px 10px 28px;-webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent}\nbutton,select{font:inherit}\n.msg{text-align:center;padding:40px 12px;color:var(--dim);font-size:17px;line-height:1.5}\n.err{color:#eaa3a3;text-align:center;font-size:16px;margin:10px 0;min-height:20px;line-height:1.4}\n.good{color:var(--ok)}\n/* top: app name and the tabs */\n.top{display:flex;align-items:baseline;gap:8px;margin:2px 2px 10px}\n.top b{font-size:18px}.top span{color:var(--dim);font-size:13px}.top .upd{margin-left:auto;color:var(--acc)}\n.tabs{display:flex;gap:6px;margin-bottom:10px}\n.tab{flex:1;border:0;border-radius:10px;padding:10px 4px;background:var(--card);color:var(--dim);font-weight:700;font-size:15px}\n.tab.on{background:var(--acc);color:var(--accText)}\n.card{background:var(--card);border-radius:12px;padding:12px;margin-bottom:10px}\nh2{font-size:13px;letter-spacing:.08em;color:var(--dim);margin:0 0 10px;font-weight:800}\n.hint{color:var(--dim);font-size:15px;font-weight:600;margin:0 0 10px;line-height:1.35}\n/* the day */\n.dayrow{display:flex;align-items:center;gap:6px}\n.nav{border:0;border-radius:10px;background:var(--card2);color:var(--text);width:44px;height:44px;font-size:22px;font-weight:700}\n.nav:disabled{opacity:.3}\n.day{flex:1;text-align:center;font-weight:800;font-size:17px;background:var(--acc);color:var(--accText);border-radius:10px;padding:11px 4px;border:0}\n.cal{margin-top:10px;background:var(--card2);border-radius:12px;padding:10px}\n.calh{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}.calh b{font-size:17px}\n.calg{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}.calw{text-align:center;color:var(--dim);font-size:13px;font-weight:700}\n.cd{border:0;border-radius:9px;padding:11px 0;background:var(--off);color:var(--text);font-weight:700;font-size:16px}.cd:disabled{opacity:.3}\n.cd.td{outline:2px solid var(--acc)}.cd.on{background:var(--acc);color:var(--accText)}\n.chips{display:flex;gap:6px;margin-top:8px}\n.chip{flex:1;border:0;border-radius:9px;padding:8px;background:var(--card2);color:var(--text);font-weight:700}\n.chip.on{outline:2px solid var(--acc)}\n/* the names */\n.names{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}\n.nm{border:0;border-radius:9px;padding:11px 8px;background:var(--card2);color:var(--text);font-weight:700;font-size:15px;text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}\n.nm.on{background:var(--red);color:var(--redText)}\n.nm.done{background:var(--red);color:var(--redText)}\n/* one away teacher: waktu boxes like the Teach In App */\n.aw{background:var(--card2);border-radius:12px;padding:12px;margin-top:10px}\n.aw b{display:block;font-size:16px;margin-bottom:6px}\n.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;touch-action:none}\n.w{border:0;border-radius:9px;padding:8px 3px;background:var(--off);color:var(--text);text-align:center;min-height:50px}\n.w b{display:block;font-size:16px;margin:0}\n.w small{display:block;font-size:11px;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;opacity:.85}\n.w.on{background:var(--red);color:var(--redText)}\nselect{width:100%;margin-top:10px;padding:11px;border-radius:9px;border:0;background:#4a4466;color:var(--text);font-size:16px}\nselect.need{outline:2px solid var(--red)}\n/* the teach in list */\n.row{display:flex;gap:10px;padding:9px 2px;border-top:1px solid #383b4c;align-items:baseline}\n.row:first-of-type{border-top:0}\n.tm{color:var(--dim);font-size:14px;min-width:46px}\n.rw{flex:1;min-width:0}\n.rw .c{font-size:14px;color:var(--dim)}\n.rw .p{font-size:16px;font-weight:800}\n.none{color:var(--red)}\ninput{-webkit-user-select:text;user-select:text;flex:1;min-width:0;padding:11px;border-radius:9px;border:0;background:var(--off);color:var(--text);font-size:16px}\n.addrow{display:flex;gap:6px;margin-top:8px;align-items:center}.addrow .chip{flex:0 0 auto;padding:11px 12px}.addrow select{margin-top:0;flex:1}\n.rs{display:flex;flex-wrap:wrap;gap:6px}.rs .chip{flex:0 0 auto}.chip.x{flex:0 0 48px}.chip.danger,.wide.danger{background:#b4505c;color:#fff}\n.nm.add{color:var(--dim);font-weight:600}.nm.offt{background:var(--acc);color:var(--accText)}\n.wide{width:100%;border:0;border-radius:10px;padding:12px;background:var(--card2);color:var(--text);font-weight:700;font-size:16px;margin-top:8px}\n.row.tap{cursor:pointer}.ed{color:var(--dim);font-size:15px;align-self:center}.hd{font-size:12px;color:var(--acc);font-weight:600}\n.cands{display:flex;flex-direction:column;gap:6px;padding:4px 0 10px 56px}\n.cand{border:0;border-radius:9px;padding:10px;background:var(--card2);color:var(--text);text-align:left;font-weight:700;font-size:15px}\n.cand small{color:var(--dim);font-weight:500}.cand.on{outline:2px solid var(--acc)}.cand.auto{background:#4a4466}\ntable{width:100%;border-collapse:collapse}\ntd,th{padding:8px 4px;text-align:left;border-top:1px solid #383b4c;font-size:15px}\nth{color:var(--dim);font-size:13px;border-top:0}\ntd.n,th.n{text-align:right}\nul{margin:0;padding-left:20px;line-height:1.5;font-size:15px}\nli{margin-bottom:6px}\n#send{display:none;width:100%;margin-top:6px;padding:14px;border:0;border-radius:10px;background:#5b8f6a;color:#fff;font-size:17px;font-weight:700}\n"; document.head.appendChild(st);
+(function () { var st = document.createElement("style"); st.textContent = "\n:root{--bg:#1f2029;--card:#2a2c38;--card2:#323545;--text:#dfe1ea;--dim:#9a9db0;--acc:#b794f6;--accText:#1d1430;--red:#f47c8c;--redText:#2b1216;--off:#3a3d4d;--ok:#7bc48f}\n*{box-sizing:border-box}\nhtml,body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,\"Segoe UI\",Roboto,Arial,sans-serif}\nbody{padding:10px 10px 28px;-webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent}\nbutton,select{font:inherit}\n.msg{text-align:center;padding:40px 12px;color:var(--dim);font-size:17px;line-height:1.5}\n.err{color:#eaa3a3;text-align:center;font-size:16px;margin:10px 0;min-height:20px;line-height:1.4}\n.good{color:var(--ok)}\n/* top: app name and the tabs */\n.top{display:flex;align-items:baseline;gap:8px;margin:2px 2px 10px}\n.top b{font-size:18px}.top span{color:var(--dim);font-size:13px}.top .upd{margin-left:auto;color:var(--acc)}\n.tabs{display:flex;gap:6px;margin-bottom:10px}\n.top{align-items:center}.gear{margin-left:auto;border:0;background:var(--card);border-radius:10px;width:44px;height:40px;font-size:20px}.upd+.gear{margin-left:8px}\n.backb{border:0;background:var(--card);color:var(--text);border-radius:10px;width:44px;height:40px;font-size:24px;font-weight:700}\n.list{padding:4px 0}.mi{display:flex;align-items:center;width:100%;border:0;background:none;color:var(--text);font-size:16px;font-weight:700;padding:14px 14px;text-align:left;border-top:1px solid #383b4c}.mi:first-child{border-top:0}.mi span{margin-left:auto;color:var(--dim);font-size:20px}.mi.red{color:#f0909c}.mi span.wn{font-weight:800;margin:0 8px 0 0;color:var(--text);font-size:16px}.mi small{color:var(--dim);font-weight:500;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}\n.tab{flex:1;border:0;border-radius:10px;padding:10px 4px;background:var(--card);color:var(--dim);font-weight:700;font-size:15px}\n.tab.on{background:var(--acc);color:var(--accText)}\n.card{background:var(--card);border-radius:12px;padding:12px;margin-bottom:10px}\nh2{font-size:13px;letter-spacing:.08em;color:var(--dim);margin:0 0 10px;font-weight:800}\n.hint{color:var(--dim);font-size:15px;font-weight:600;margin:0 0 10px;line-height:1.35}\n/* the day */\n.dayrow{display:flex;align-items:center;gap:6px}\n.nav{border:0;border-radius:10px;background:var(--card2);color:var(--text);width:44px;height:44px;font-size:22px;font-weight:700}\n.nav:disabled{opacity:.3}\n.day{flex:1;text-align:center;font-weight:800;font-size:17px;background:var(--acc);color:var(--accText);border-radius:10px;padding:11px 4px;border:0}\n.cal{margin-top:10px;background:var(--card2);border-radius:12px;padding:10px}\n.calh{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}.calh b{font-size:17px}\n.calg{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}.calw{text-align:center;color:var(--dim);font-size:13px;font-weight:700}\n.cd{border:0;border-radius:9px;padding:11px 0;background:var(--off);color:var(--text);font-weight:700;font-size:16px}.cd:disabled{opacity:.3}\n.cd.td{outline:2px solid var(--acc)}.cd.on{background:var(--acc);color:var(--accText)}\n.chips{display:flex;gap:6px;margin-top:8px}\n.chip{flex:1;border:0;border-radius:9px;padding:8px;background:var(--card2);color:var(--text);font-weight:700}\n.chip.on{outline:2px solid var(--acc)}\n/* the names */\n.names{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}\n.nm{border:0;border-radius:9px;padding:11px 8px;background:var(--card2);color:var(--text);font-weight:700;font-size:15px;text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}\n.nm.on{background:var(--red);color:var(--redText)}\n.nm.done{background:var(--red);color:var(--redText)}\n/* one away teacher: waktu boxes like the Teach In App */\n.aw{background:var(--card2);border-radius:12px;padding:12px;margin-top:10px}\n.aw b{display:block;font-size:16px;margin-bottom:6px}\n.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;touch-action:none}\n.w{border:0;border-radius:9px;padding:8px 3px;background:var(--off);color:var(--text);text-align:center;min-height:50px}\n.w b{display:block;font-size:16px;margin:0}\n.w small{display:block;font-size:11px;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;opacity:.85}\n.w.on{background:var(--red);color:var(--redText)}\nselect{width:100%;margin-top:10px;padding:11px;border-radius:9px;border:0;background:#4a4466;color:var(--text);font-size:16px}\nselect.need{outline:2px solid var(--red)}\n/* the teach in list */\n.row{display:flex;gap:10px;padding:9px 2px;border-top:1px solid #383b4c;align-items:baseline}\n.row:first-of-type{border-top:0}\n.tm{color:var(--dim);font-size:14px;min-width:46px}\n.rw{flex:1;min-width:0}\n.rw .c{font-size:14px;color:var(--dim)}\n.rw .p{font-size:16px;font-weight:800}\n.none{color:var(--red)}\ninput{-webkit-user-select:text;user-select:text;flex:1;min-width:0;padding:11px;border-radius:9px;border:0;background:var(--off);color:var(--text);font-size:16px}\n.addrow{display:flex;gap:6px;margin-top:8px;align-items:center}.addrow .chip{flex:0 0 auto;padding:11px 12px}.addrow select{margin-top:0;flex:1}\n.rs{display:flex;flex-wrap:wrap;gap:6px}.rs .chip{flex:0 0 auto}.chip.x{flex:0 0 48px}.chip.danger,.wide.danger{background:#b4505c;color:#fff}\n.nm.add{color:var(--dim);font-weight:600}.nm.offt{background:var(--acc);color:var(--accText)}\n.wide{width:100%;border:0;border-radius:10px;padding:12px;background:var(--card2);color:var(--text);font-weight:700;font-size:16px;margin-top:8px}\n.row.tap{cursor:pointer}.ed{color:var(--dim);font-size:15px;align-self:center}.hd{font-size:12px;color:var(--acc);font-weight:600}\n.cands{display:flex;flex-direction:column;gap:6px;padding:4px 0 10px 56px}\n.cand{border:0;border-radius:9px;padding:10px;background:var(--card2);color:var(--text);text-align:left;font-weight:700;font-size:15px}\n.cand small{color:var(--dim);font-weight:500}.cand.on{outline:2px solid var(--acc)}.cand.auto{background:#4a4466}\ntable{width:100%;border-collapse:collapse}\ntd,th{padding:8px 4px;text-align:left;border-top:1px solid #383b4c;font-size:15px}\nth{color:var(--dim);font-size:13px;border-top:0}\ntd.n,th.n{text-align:right}\nul{margin:0;padding-left:20px;line-height:1.5;font-size:15px}\nli{margin-bottom:6px}\n#send{display:none;width:100%;margin-top:6px;padding:14px;border:0;border-radius:10px;background:#5b8f6a;color:#fff;font-size:17px;font-weight:700}\n"; document.head.appendChild(st);
   document.getElementById("boot").outerHTML = "<div id=\"app\" class=\"msg\">⏳ Sedang memuat...</div>\n<button id=\"send\">Submit</button>\n<div id=\"err\" class=\"err\"></div>\n"; })();
 // Teach In engine: who teaches in for a teacher who is away. No screen code here, so the test can run it in node.
 // The 7 rules, the higher rule wins:
@@ -293,7 +293,7 @@ if (typeof module !== 'undefined') module.exports = TI;
   var FRESH = true, KEEP = 'tim_' + dep + '_' + ((tg.initDataUnsafe && tg.initDataUnsafe.user && tg.initDataUnsafe.user.id) || '');
   // LIPAS 1.64 (b): only the newest answer counts (a Settings change or another year asked meanwhile wins); (c) after
   // Submit the success line stays until the app closes
-  var SEQ = 0, SENT = false;
+  var SEQ = 0, SENT = false, WHO = -1;   // WHO = the away teacher whose own page is open
   function keep(d) { try { localStorage.setItem(KEEP, JSON.stringify(d)); } catch (e) {} }
   // draw again without losing what is being typed in a box
   function redraw() {
@@ -342,17 +342,32 @@ if (typeof module !== 'undefined') module.exports = TI;
     LAST = es;
     return day.rows || [];
   }
+  // His order, 26 Nov 2026 ("stop scarring people with overwhelming things filling the screen"; taps are instant now,
+  // so more taps and a cleaner screen are fine): no tabs. Siapa is the app; ⚙️ opens the Settings menu, and every
+  // item there is a page of its own (‹ goes back, and Telegram's own Back button too).
+  var PAGES = { tetap: 'Settings', jumlah: 'Jumlah teach in', cara: 'Cara guna', off: 'Tidak diberi teach in', rs: 'Sebab tidak hadir',
+    ren: 'Tukar nama guru', del: 'Padam guru', ye: 'Jumlah akhir tahun', wipe: 'Padam semua teach in' };
+  function goTab(t) { TAB = t; DELASK = ''; WIPEASK = false; CAL = null; $('err').textContent = ''; haptic(); draw(); window.scrollTo(0, 0); }
+  function back() { goTab(TAB === 'tetap' || TAB === 'who' ? 'siapa' : 'tetap'); }
+  if (tg.BackButton) tg.BackButton.onClick(function () { if (!busy) back(); });
   function draw() {
-    var h = '<div class="top"><b>Teach In Mini App</b><span>Versi ' + esc(L.v) + '</span>' + (FRESH ? '' : '<span class="upd">⏳ Dikemas kini</span>') + '</div><div class="tabs">' +
-      [['siapa', 'Siapa'], ['jumlah', 'Jumlah'], ['tetap', 'Settings'], ['cara', 'Cara guna']].map(function (t) { return '<button class="tab' + (TAB === t[0] ? ' on' : '') + '" data-tab="' + t[0] + '">' + t[1] + '</button>'; }).join('') + '</div>';
+    var h = TAB === 'siapa'
+      ? '<div class="top"><b>Teach In Mini App</b><span>Versi ' + esc(L.v) + '</span>' + (FRESH ? '' : '<span class="upd">⏳ Dikemas kini</span>') + '<button class="gear" id="setb">⚙️</button></div>'
+      : '<div class="top"><button class="backb" id="backb">‹</button><b>' + esc(TAB === 'who' ? (picked[WHO] || {}).t || '' : PAGES[TAB] + (TAB === 'wipe' ? ' ' + L.wipeYear : '')) + '</b></div>';
     if (TAB === 'siapa') h += siapa();
+    else if (TAB === 'tetap') h += menu();
     else if (TAB === 'jumlah') h += jumlah();
-    else if (TAB === 'tetap') h += tetap();
-    else h += cara();
+    else if (TAB === 'cara') h += cara();
+    else if (TAB === 'who') h += whoPage();
+    else h += page(TAB);
     $('app').innerHTML = h;
-    [].forEach.call(document.querySelectorAll('.tab'), function (b) { b.onclick = function () { TAB = b.dataset.tab; DELASK = ''; WIPEASK = false; CAL = null; $('err').textContent = ''; haptic(); draw(); }; });
+    if ($('setb')) $('setb').onclick = function () { goTab('tetap'); };
+    if ($('backb')) $('backb').onclick = back;
+    if (tg.BackButton) { if (TAB === 'siapa') tg.BackButton.hide(); else tg.BackButton.show(); }
+    [].forEach.call(document.querySelectorAll('[data-go]'), function (b) { b.onclick = function () { goTab(b.dataset.go); }; });
     if (TAB === 'siapa') hookSiapa();
-    if (TAB === 'tetap') hookTetap();
+    else if (TAB === 'who') hookWho();
+    else hookTetap();
     showSend(TAB === 'siapa' && picked.length > 0);
   }
   function siapa() {
@@ -370,14 +385,9 @@ if (typeof module !== 'undefined') module.exports = TI;
       return '<button class="nm' + (pk ? ' on' : doneT[t] ? ' done' : '') + '" data-i="' + i + '">' + (doneT[t] ? '✓ ' : '') + esc(t) + '</button>';
     }).join('') + '<button class="nm add" id="newb">➕ Guru baharu</button></div>' +
       (NEWT ? '<div class="addrow"><input id="newt" placeholder="Nama guru baharu" autocomplete="off"><button class="chip" id="newgo">Tambah</button></div>' : '');
-    picked.forEach(function (x, n) {
-      mine = (teacherMap()[x.t] || [])[TI.dayIndex(K)] || [];
-      h += '<div class="aw"><b>' + esc(x.t) + '</b>' + (K2 ? '<div class="hint" style="margin:0">Sehari penuh, setiap hari sekolah hingga ' + esc(dayLong(K2)) + '.</div>' :
-        '<div class="hint">merah=guru itu tiada di sekolah masa itu</div><div class="grid" data-n="' + n + '">' +
-        all.map(function (s) { return slotHtml({ s: s, tm: L.es.tt.times[s], cls: (mine[s] || []).map(function (e) { return e.cls + ' ' + e.label; }).join(', ') }, x.on[s]); }).join('') + '</div>') +
-        '<select data-n="' + n + '"' + (x.need ? ' class="need"' : '') + '><option value="" disabled' + (x.why === null ? ' selected' : '') + ' hidden>Sebab</option>' +
-        L.reasons.concat(['Tanpa sebab']).map(function (r) { return '<option' + (x.why === r || (r === 'Tanpa sebab' && x.why === '') ? ' selected' : '') + '>' + esc(r) + '</option>'; }).join('') + '</select></div>';
-    });
+    if (picked.length) h += '<div class="card list" style="margin:10px 0 0;background:var(--card2)">' + picked.map(function (x, n) {
+      return '<button class="mi" data-who="' + n + '"><span class="wn">' + esc(x.t) + '</span><small>' + esc(whenText(x)) + ' · ' + esc(x.why === null ? 'Tanpa sebab' : (x.why || 'Tanpa sebab')) + '</small><span>›</span></button>';
+    }).join('') + '</div><div class="hint" style="margin:6px 2px 0">Tap baris guru itu untuk tukar waktu atau sebab.</div>';
     var done = Object.keys(doneT);
     if (done.length) h += '<div class="hint" style="margin:10px 0 0">✓ sudah dilapor: ' + esc(done.map(function (t) { return t + ' (' + doneT[t] + ')'; }).join(', ')) + '.</div>';
     h += '</div><div class="card"><h2>SENARAI TEACH IN' + (K2 ? ' (' + esc(dayLong(K)) + ')' : '') + '</h2><div id="list">' + listHtml() + '</div></div>';
@@ -459,10 +469,7 @@ if (typeof module !== 'undefined') module.exports = TI;
         draw();
       };
     });
-    [].forEach.call(document.querySelectorAll('.aw .grid'), function (g) { paintGrid(g, picked[+g.dataset.n].on, function () { OPEN = -1; relist(); }); });
-    [].forEach.call(document.querySelectorAll('.aw select'), function (s) {
-      s.onchange = function () { var x = picked[+s.dataset.n]; x.why = s.value === 'Tanpa sebab' ? '' : s.value; x.need = false; s.classList.remove('need'); $('err').textContent = ''; };
-    });
+    [].forEach.call(document.querySelectorAll('[data-who]'), function (b) { b.onclick = function () { WHO = +b.dataset.who; goTab('who'); }; });
   }
   function doneOf(t) { return (dayObj(K).away || []).some(function (a) { return a.t === t; }); }
   // every Settings change: a sign at once, then the page shows the bot's new data
@@ -480,57 +487,94 @@ if (typeof module !== 'undefined') module.exports = TI;
       draw();
     }).catch(function () { busy = false; $('err').textContent = 'Tiada sambungan internet. Cuba lagi.'; });
   }
-  function tetap() {
-    var sheet = L.sheet ? '<div class="card"><button class="wide" id="sheetb">📄 Google Sheet: Rekod teach in</button></div>' : '';
-    if (!L.admin) return '<div class="card"><h2>SETTINGS</h2><div class="hint" style="margin:0">Hanya admin boleh tukar Settings.</div></div>' + sheet;
-    var off = L.es.off || [], ye = (L.yearEnd || { md: '12-31', tm: '13:30' }), md = ye.md.split('-'), times = [];
-    for (var hh = 7; hh <= 17; hh++) ['00', '30'].forEach(function (mm) { times.push(('0' + hh).slice(-2) + ':' + mm); });
-    var days = []; for (var d = 1; d <= 31; d++) days.push(d);
-    var ren = Object.keys(L.renamed || {});
-    return '<div class="card"><h2>TIDAK DIBERI TEACH IN</h2><div class="hint">Tap nama guru yang tidak boleh diberi teach in langsung.</div><div class="names">' +
-      L.es.teachers.map(function (t) { var o = off.indexOf(t) >= 0; return '<button class="nm' + (o ? ' offt' : '') + '" data-off="' + esc(t) + '">' + (o ? '✓ ' : '') + esc(t) + '</button>'; }).join('') + '</div></div>' +
-      '<div class="card"><h2>SEBAB TIDAK HADIR</h2><div class="rs">' + L.reasons.map(function (r) { return '<button class="chip" data-rx="' + esc(r) + '">' + esc(r) + ' ✕</button>'; }).join('') + '</div>' +
-      '<div class="addrow"><input id="rsNew" placeholder="Sebab baharu" autocomplete="off"><button class="chip" id="rsAdd">Tambah</button></div></div>' +
-      '<div class="card"><h2>TUKAR NAMA GURU</h2><div class="hint">Guru baharu guna jadual waktu guru yang sudah pindah.</div><select id="renFrom">' +
-      L.es.teachers.map(function (t) { return '<option>' + esc(t) + '</option>'; }).join('') + '</select><div class="addrow"><input id="renTo" placeholder="Nama baharu" autocomplete="off"><button class="chip" id="renGo">Tukar nama</button></div>' +
-      ren.map(function (t) { return '<div class="addrow"><div class="hint" style="margin:0;flex:1">' + esc(t) + ' guna jadual waktu ' + esc(L.renamed[t]) + '.</div><button class="chip" data-back="' + esc(t) + '">↩️ Kembalikan ' + esc(L.renamed[t]) + '</button></div>'; }).join('') + '</div>' +
-      '<div class="card"><h2>PADAM GURU</h2><div class="hint">Hanya guru yang ditambah dengan ➕ Guru baharu.</div><div class="rs">' +
-      ((L.extra || []).length ? L.extra.map(function (t) { return '<button class="chip' + (DELASK === t ? ' danger' : '') + '" data-del="' + esc(t) + '">' + (DELASK === t ? 'Ya, padam ' + esc(t) : '🗑 ' + esc(t)) + '</button>'; }).join('') : '<div class="hint" style="margin:0">Tiada.</div>') + '</div></div>' +
-      '<div class="card"><h2>JUMLAH AKHIR TAHUN</h2><div class="hint">Bot hantar Jumlah teach in tahun itu ke topik. Sekarang: ' + esc(L.yeText || '') + '</div><div class="addrow">' +
-      '<select id="yeD">' + days.map(function (x) { return '<option' + (x === +md[1] ? ' selected' : '') + '>' + x + '</option>'; }).join('') + '</select>' +
-      '<select id="yeM">' + BULAN.map(function (b, i) { return '<option value="' + (i + 1) + '"' + (i + 1 === +md[0] ? ' selected' : '') + '>' + b + '</option>'; }).join('') + '</select>' +
-      '<select id="yeT">' + times.map(function (x) { return '<option' + (x === ye.tm ? ' selected' : '') + '>' + x + '</option>'; }).join('') + '</select></div>' +
-      '<button class="wide" id="yeGo">Save</button></div>' +
-      '<div class="card"><h2>PADAM SEMUA TEACH IN ' + esc(L.wipeYear) + '</h2><div class="hint">Jumlah semua guru jadi 0.</div><button class="wide danger" id="wipe">' + (WIPEASK ? 'Ya, padam semua teach in ' + esc(L.wipeYear) : '🗑 Padam semua teach in ' + esc(L.wipeYear)) + '</button></div>' + sheet;
+  // "Sehari penuh" / "07:30-09:00, 11:20-12:20" for the row of an away teacher
+  function whenText(x) {
+    if (K2) return 'Sehari penuh hingga ' + dayLong(K2);
+    var all = slotsOfDay(K), s = all.filter(function (y) { return x.on[y]; });
+    if (s.length === all.length) return 'Sehari penuh';
+    if (!s.length) return 'Tiada waktu';
+    var out = [], a = s[0], b = s[0];
+    for (var i = 1; i <= s.length; i++) { if (i < s.length && s[i] === b + 1) { b = s[i]; continue; } out.push(L.es.tt.times[a] + '-' + TI.endTime(L.es.tt, b)); if (i < s.length) a = b = s[i]; }
+    return out.join(', ');
+  }
+  function whoPage() {
+    var x = picked[WHO]; if (!x) return '';
+    var all = slotsOfDay(K), mine = (teacherMap()[x.t] || [])[TI.dayIndex(K)] || [];
+    return '<div class="card">' + (K2 ? '<div class="hint" style="margin:0">Sehari penuh, setiap hari sekolah hingga ' + esc(dayLong(K2)) + '.</div>' :
+      '<div class="hint">merah=guru itu tiada di sekolah masa itu</div><div class="grid" id="wg">' +
+      all.map(function (s) { return slotHtml({ s: s, tm: L.es.tt.times[s], cls: (mine[s] || []).map(function (e) { return e.cls + ' ' + e.label; }).join(', ') }, x.on[s]); }).join('') + '</div>') +
+      '<select id="ws"><option value="" disabled' + (x.why === null ? ' selected' : '') + ' hidden>Sebab</option>' +
+      L.reasons.concat(['Tanpa sebab']).map(function (r) { return '<option' + (x.why === r || (r === 'Tanpa sebab' && x.why === '') ? ' selected' : '') + '>' + esc(r) + '</option>'; }).join('') + '</select></div>' +
+      '<button class="wide" id="wok">‹ Siap</button>';
+  }
+  function menu() {
+    var row = function (go, text) { return '<button class="mi" data-go="' + go + '">' + text + '<span>›</span></button>'; };
+    var h = '<div class="card list">' + row('jumlah', '📊 Jumlah teach in') + row('cara', '❓ Cara guna') +
+      (L.sheet ? '<button class="mi" id="sheetb">📄 Google Sheet: Rekod teach in<span>↗</span></button>' : '') + '</div>';
+    if (!L.admin) return h + '<div class="hint" style="margin:4px 4px 0">Hanya admin boleh tukar Settings.</div>';
+    return h + '<h2 style="margin:14px 4px 8px">ADMIN</h2><div class="card list">' + row('off', 'Tidak diberi teach in') + row('rs', 'Sebab tidak hadir') +
+      row('ren', '✏️ Tukar nama guru') + row('del', '🗑 Padam guru') + row('ye', '📅 Jumlah akhir tahun') + '</div>' +
+      '<div class="card list">' + '<button class="mi red" data-go="wipe">🗑 Padam semua teach in ' + esc(L.wipeYear) + '<span>›</span></button></div>';
+  }
+  function page(t) {
+    if (!L.admin) return '<div class="card hint" style="margin:0">Hanya admin boleh tukar Settings.</div>';
+    if (t === 'off') { var off = L.es.off || [];
+      return '<div class="card"><div class="hint">Tap nama guru yang tidak boleh diberi teach in langsung.</div><div class="names">' +
+        L.es.teachers.map(function (x) { var o = off.indexOf(x) >= 0; return '<button class="nm' + (o ? ' offt' : '') + '" data-off="' + esc(x) + '">' + (o ? '✓ ' : '') + esc(x) + '</button>'; }).join('') + '</div></div>'; }
+    if (t === 'rs') return '<div class="card"><div class="rs">' + L.reasons.map(function (r) { return '<button class="chip" data-rx="' + esc(r) + '">' + esc(r) + ' ✕</button>'; }).join('') + '</div>' +
+      '<div class="addrow"><input id="rsNew" placeholder="Sebab baharu" autocomplete="off"><button class="chip" id="rsAdd">Tambah</button></div></div>';
+    if (t === 'ren') { var ren = Object.keys(L.renamed || {});
+      return '<div class="card"><div class="hint">Guru baharu guna jadual waktu guru yang sudah pindah.</div><select id="renFrom">' +
+        L.es.teachers.map(function (x) { return '<option>' + esc(x) + '</option>'; }).join('') + '</select><div class="addrow"><input id="renTo" placeholder="Nama baharu" autocomplete="off"><button class="chip" id="renGo">Tukar nama</button></div>' +
+        ren.map(function (x) { return '<div class="addrow"><div class="hint" style="margin:0;flex:1">' + esc(x) + ' guna jadual waktu ' + esc(L.renamed[x]) + '.</div><button class="chip" data-back="' + esc(x) + '">↩️ Kembalikan ' + esc(L.renamed[x]) + '</button></div>'; }).join('') + '</div>'; }
+    if (t === 'del') return '<div class="card"><div class="hint">Hanya guru yang ditambah dengan ➕ Guru baharu.</div><div class="rs">' +
+      ((L.extra || []).length ? L.extra.map(function (x) { return '<button class="chip' + (DELASK === x ? ' danger' : '') + '" data-del="' + esc(x) + '">' + (DELASK === x ? 'Ya, padam ' + esc(x) : '🗑 ' + esc(x)) + '</button>'; }).join('') : '<div class="hint" style="margin:0">Tiada.</div>') + '</div></div>';
+    if (t === 'ye') { var ye = (L.yearEnd || { md: '12-31', tm: '13:30' }), md = ye.md.split('-'), times = [], days = [];
+      for (var hh = 7; hh <= 17; hh++) ['00', '30'].forEach(function (mm) { times.push(('0' + hh).slice(-2) + ':' + mm); });
+      for (var d = 1; d <= 31; d++) days.push(d);
+      return '<div class="card"><div class="hint">Bot hantar Jumlah teach in tahun itu ke topik. Sekarang: ' + esc(L.yeText || '') + '</div><div class="addrow">' +
+        '<select id="yeD">' + days.map(function (x) { return '<option' + (x === +md[1] ? ' selected' : '') + '>' + x + '</option>'; }).join('') + '</select>' +
+        '<select id="yeM">' + BULAN.map(function (b, i) { return '<option value="' + (i + 1) + '"' + (i + 1 === +md[0] ? ' selected' : '') + '>' + b + '</option>'; }).join('') + '</select>' +
+        '<select id="yeT">' + times.map(function (x) { return '<option' + (x === ye.tm ? ' selected' : '') + '>' + x + '</option>'; }).join('') + '</select></div>' +
+        '<button class="wide" id="yeGo">Save</button></div>'; }
+    if (t === 'wipe') return '<div class="card"><div class="hint">Jumlah semua guru jadi 0.</div><button class="wide danger" id="wipe">' + (WIPEASK ? 'Ya, padam semua teach in ' + esc(L.wipeYear) : '🗑 Padam semua teach in ' + esc(L.wipeYear)) + '</button></div>';
+    return '';
+  }
+  function hookWho() {
+    var x = picked[WHO]; if (!x) return;
+    if ($('wg')) paintGrid($('wg'), x.on, function () { OPEN = -1; });
+    $('ws').onchange = function () { x.why = $('ws').value === 'Tanpa sebab' ? '' : $('ws').value; $('err').textContent = ''; };
+    $('wok').onclick = function () { goTab('siapa'); };
   }
   function hookTetap() {
     if ($('sheetb')) $('sheetb').onclick = function () { try { tg.openLink(L.sheet); } catch (e) { window.open(L.sheet); } };
     if (!L.admin) return;
+    var on = function (id, f) { if ($(id)) $(id).onclick = f; };
     [].forEach.call(document.querySelectorAll('[data-off]'), function (b) { b.onclick = function () { haptic(); cfg('off', b.dataset.off); }; });
     [].forEach.call(document.querySelectorAll('[data-rx]'), function (b) { b.onclick = function () { haptic(); cfg('rx', b.dataset.rx); }; });
-    $('rsAdd').onclick = function () { var v = ($('rsNew').value || '').trim(); if (!v) { $('err').textContent = 'Taip sebab.'; return; } cfg('ra', v); };
-    $('renGo').onclick = function () { var v = ($('renTo').value || '').trim(); if (!v) { $('err').textContent = 'Taip nama baharu.'; return; } cfg('ren', $('renFrom').value, v); };
+    on('rsAdd', function () { var v = ($('rsNew').value || '').trim(); if (!v) { $('err').textContent = 'Taip sebab.'; return; } cfg('ra', v); });
+    on('renGo', function () { var v = ($('renTo').value || '').trim(); if (!v) { $('err').textContent = 'Taip nama baharu.'; return; } cfg('ren', $('renFrom').value, v); });
     [].forEach.call(document.querySelectorAll('[data-back]'), function (b) { b.onclick = function () { haptic(); cfg('back', b.dataset.back); }; });
     [].forEach.call(document.querySelectorAll('[data-del]'), function (b) { b.onclick = function () { haptic(); var t = b.dataset.del; if (DELASK !== t) { DELASK = t; draw(); return; } DELASK = ''; cfg('del', t); }; });
-    $('yeGo').onclick = function () { haptic(); cfg('ye', ('0' + $('yeM').value).slice(-2) + '-' + ('0' + $('yeD').value).slice(-2), $('yeT').value); };
-    $('wipe').onclick = function () { haptic(); if (!WIPEASK) { WIPEASK = true; draw(); return; } WIPEASK = false; cfg('wipe'); };
+    on('yeGo', function () { haptic(); cfg('ye', ('0' + $('yeM').value).slice(-2) + '-' + ('0' + $('yeD').value).slice(-2), $('yeT').value); });
+    on('wipe', function () { haptic(); if (!WIPEASK) { WIPEASK = true; draw(); return; } WIPEASK = false; cfg('wipe', '', '', function () { TAB = 'tetap'; }); });
   }
   function jumlah() {
     var n = L.totals || {}, list = Object.keys(n).sort(function (a, b) { return n[b] - n[a] || (a < b ? -1 : 1); });
-    return '<div class="card"><h2>JUMLAH TEACH IN TAHUN INI (' + esc(L.year) + ')</h2><table><tr><th>GURU</th><th class="n">JUMLAH</th></tr>' +
+    return '<div class="card"><div class="hint">Tahun ' + esc(L.year) + '</div><table><tr><th>GURU</th><th class="n">JUMLAH</th></tr>' +
       list.map(function (t) { return '<tr><td>' + esc(t) + '</td><td class="n">' + n[t] + '</td></tr>'; }).join('') + '</table></div>';
   }
   function cara() {
-    return '<div class="card"><h2>CARA GUNA</h2><ul>' +
+    return '<div class="card"><ul>' +
       '<li>Pilih hari dengan ‹ dan ›, Hari ini / Esok, atau tap tarikh untuk kalendar.</li>' +
       '<li>Tap nama guru yang tidak hadir. Senarai teach in keluar serta-merta.</li>' +
-      '<li>merah=guru itu tiada di sekolah masa itu. Mula-mula sepanjang hari. Datang lewat atau balik awal? Tap atau sapu jari pada waktu.</li>' +
-      '<li>Sebab: pilih jika perlu (tidak wajib). Kemudian tekan Submit. Gambar teach in masuk ke topik.</li>' +
+      '<li>Mula-mula sepanjang hari. Datang lewat atau balik awal? Tap nama guru itu di bawah senarai nama, kemudian tap atau sapu jari pada waktu (merah=guru itu tiada di sekolah masa itu).</li>' +
+      '<li>Sebab: di halaman guru itu juga (tidak wajib). Kemudian tekan Submit. Gambar teach in masuk ke topik.</li>' +
       '<li>Mahu guru lain untuk satu waktu? Tap baris itu dalam SENARAI TEACH IN, kemudian tap nama guru yang free.</li>' +
       '<li>Nama dengan ✓ sudah dilapor.</li>' +
       '<li>Tidak hadir beberapa hari (cuti)? Tap 📅 Hingga dan pilih hari terakhir. Sehari penuh setiap hari.</li>' +
       '<li>Nama tiada dalam senarai? Tap ➕ Guru baharu.</li>' +
-      '<li>Settings: admin sahaja boleh tukar.</li>' +
+      '<li>⚙️ (kanan atas): Jumlah teach in, Cara guna, Google Sheet. Admin: Settings.</li>' +
       '</ul></div>';
   }
   function send2() {
