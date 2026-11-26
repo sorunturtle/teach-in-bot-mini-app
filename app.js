@@ -290,7 +290,7 @@ if (typeof module !== 'undefined') module.exports = TI;
   function dayObj(k) { return (L.es.days && L.es.days[k]) || { away: [], rows: [] }; }
   function load(k) {
     say('⏳ Sedang memuat...'); showSend(false);
-    return call({ mini: 'load', k: k }).then(function (d) {
+    return call({ mini: 'load', k: k, a: dep }).then(function (d) {
       if (d.err) { say(d.err); return; }
       L = d; K = k || d.today;
       $('app').className = ''; draw();
@@ -443,6 +443,9 @@ if (typeof module !== 'undefined') module.exports = TI;
       busy = false;
       if (!d.ok) { $('err').textContent = d.err || 'Cuba lagi.'; return; }
       L = d.data; $('err').textContent = '';
+      // LIPAS 1.62: a teacher renamed or deleted in Settings leaves the names picked in Siapa (and her hand picks)
+      picked = picked.filter(function (x) { return L.es.teachers.indexOf(x.t) >= 0; });
+      Object.keys(hands).forEach(function (key) { if (L.es.teachers.indexOf(key.split('|')[3]) < 0 || L.es.teachers.indexOf(hands[key]) < 0) delete hands[key]; });
       if (after) after(d);
       draw();
     }).catch(function () { busy = false; $('err').textContent = 'Tiada sambungan internet. Cuba lagi.'; });
