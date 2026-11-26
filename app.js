@@ -312,7 +312,7 @@ if (typeof module !== 'undefined') module.exports = TI;
     return day.rows || [];
   }
   function draw() {
-    var h = '<div class="top"><b>Teach In App</b><span>Versi ' + esc(L.v) + '</span></div><div class="tabs">' +
+    var h = '<div class="top"><b>Teach In Mini App</b><span>Versi ' + esc(L.v) + '</span></div><div class="tabs">' +
       [['siapa', 'Siapa'], ['jumlah', 'Jumlah'], ['cara', 'Cara guna']].map(function (t) { return '<button class="tab' + (TAB === t[0] ? ' on' : '') + '" data-tab="' + t[0] + '">' + t[1] + '</button>'; }).join('') + '</div>';
     if (TAB === 'siapa') h += siapa();
     else if (TAB === 'jumlah') h += jumlah();
