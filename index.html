@@ -396,7 +396,7 @@ if (typeof module !== 'undefined') module.exports = TI;
     if (!all.length) return h + '<div class="card msg">Hari ' + esc(HARI[TI.parseKey(K).getDay()]) + ': tiada sekolah.</div>';
     h += '<div class="card"><h2>SIAPA TIDAK HADIR?</h2><div class="names">' + L.es.teachers.map(function (t, i) {
       var pk = picked.some(function (x) { return x.t === t; });
-      return '<button class="nm' + (pk ? ' on' : doneT[t] ? ' done' : '') + '" data-i="' + i + '">' + (doneT[t] ? '✓ ' : '') + (L.me === t ? '🙋 ' : '') + esc(t) + '</button>';
+      return '<button class="nm' + (pk ? ' on' : doneT[t] ? ' done' : '') + '" data-i="' + i + '">' + (doneT[t] ? '✓ ' : '') + esc(t) + '</button>';
     }).join('') + '</div>';
     picked.forEach(function (x, n) {
       mine = (teacherMap()[x.t] || [])[TI.dayIndex(K)] || [];
