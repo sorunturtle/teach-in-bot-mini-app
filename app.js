@@ -433,7 +433,7 @@ if (typeof module !== 'undefined') module.exports = TI;
       '<li>Sebab: pilih jika perlu (tidak wajib). Kemudian tekan Submit. Gambar teach in masuk ke topik.</li>' +
       '<li>Mahu guru lain untuk satu waktu? Tap baris itu dalam SENARAI TEACH IN, kemudian tap nama guru yang free.</li>' +
       '<li>Nama dengan ✓ sudah dilapor.</li>' +
-      '<li>Settings: tekan ⚙️ Settings dalam topik.</li></ul></div>';
+      '</ul></div>';
   }
   function send2() {
     if (busy || TAB !== 'siapa' || !picked.length) return;
