@@ -290,7 +290,10 @@ if (typeof module !== 'undefined') module.exports = TI;
   function dayObj(k) { return (L.es.days && L.es.days[k]) || { away: [], rows: [] }; }
   // His order, 26 Nov 2026 ("why 3 and not 0.5?"): the app opens at once with what it got last time (kept on this
   // phone), and the newest data from the bot replaces it a few seconds later. Submit is always checked by the bot.
-  var FRESH = true, KEEP = 'tim_' + dep;
+  var FRESH = true, KEEP = 'tim_' + dep + '_' + ((tg.initDataUnsafe && tg.initDataUnsafe.user && tg.initDataUnsafe.user.id) || '');
+  // LIPAS 1.64 (b): only the newest answer counts (a Settings change or another year asked meanwhile wins); (c) after
+  // Submit the success line stays until the app closes
+  var SEQ = 0, SENT = false;
   function keep(d) { try { localStorage.setItem(KEEP, JSON.stringify(d)); } catch (e) {} }
   // draw again without losing what is being typed in a box
   function redraw() {
@@ -299,7 +302,7 @@ if (typeof module !== 'undefined') module.exports = TI;
     if (id && $(id)) { $(id).value = val; $(id).focus(); }
   }
   function load(k) {
-    var old = null;
+    var old = null, my = ++SEQ;
     if (!k && !L) { try { old = JSON.parse(localStorage.getItem(KEEP) || 'null'); } catch (e) {} }
     if (old && old.es && old.es.tt) {
       var td = TI.keyOf(new Date());
@@ -308,12 +311,17 @@ if (typeof module !== 'undefined') module.exports = TI;
       $('app').className = ''; draw();
     } else { say('⏳ Sedang memuat...'); showSend(false); }
     return call({ mini: 'load', k: k, a: dep }).then(function (d) {
+      if (my !== SEQ) return;
+      if (SENT) return;
       if (d.err) { if (old) { FRESH = true; redraw(); $('err').textContent = d.err; } else say(d.err); return; }
       L = d; FRESH = true;
       if (!k) keep(d);
       if (!old) K = k || d.today;   // shown from the kept data: the day and every tap so far stay as they are
+      // (d) a teacher tapped on the kept data who the newest data says is already reported: taken off
+      picked = picked.filter(function (x) { return !doneOf(x.t); });
       $('app').className = ''; redraw();
     }).catch(function () {
+      if (my !== SEQ || SENT) return;
       if (old) { FRESH = true; redraw(); $('err').textContent = 'Tiada sambungan internet. Senarai mungkin lama.'; }
       else say('Tiada sambungan internet. Tutup dan cuba lagi.');
     });
@@ -460,7 +468,7 @@ if (typeof module !== 'undefined') module.exports = TI;
   // every Settings change: a sign at once, then the page shows the bot's new data
   function cfg(act, v, w, after) {
     if (busy) return;
-    busy = true; $('err').classList.remove('good'); $('err').textContent = '⏳ Sedang menyimpan...';
+    busy = true; SEQ++; $('err').classList.remove('good'); $('err').textContent = '⏳ Sedang menyimpan...';
     call({ mini: 'cfg', act: act, v: v || '', w: w || '', k: K }).then(function (d) {
       busy = false;
       if (!d.ok) { $('err').textContent = d.err || 'Cuba lagi.'; return; }
@@ -535,6 +543,7 @@ if (typeof module !== 'undefined') module.exports = TI;
     call({ mini: 'send', k: K, k2: K2, list: JSON.stringify(list), hands: JSON.stringify(K2 ? [] : hl) }).then(function (d) {
       sending(false);
       if (!d.ok) { $('err').textContent = d.err || 'Cuba lagi.'; return; }
+      SENT = true;
       showSend(false);
       say(d.said + (d.note ? '\n' + d.note : ''));
       $('app').classList.add('good');
